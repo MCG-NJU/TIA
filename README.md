@@ -6,8 +6,8 @@ This repository is the official PyTorch implementation of paper Task-specific In
 
 ## Main requirements
 torch == 1.0.0\
-torchvision == 0.2.0
-Python 3
+torchvision == 0.2.0\
+Python 3\
 faster-rcnn
 
 <!-- ## Environmental settings
