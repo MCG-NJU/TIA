@@ -31,3 +31,24 @@ In our experiments, we used two pre-trained models on ImageNet, i.e., VGG16 and 
 * **ResNet101:** [Dropbox](https://www.dropbox.com/s/iev3tkbz5wyyuz9/resnet101_caffe.pth?dl=0)  [VT Server](https://filebox.ece.vt.edu/~jw2yang/faster-rcnn/pretrained-base-models/resnet101_caffe.pth)
 
 Download them and write the path in **__C.VGG_PATH** and **__C.RESNET_PATH** at ```lib/model/utils/config.py```.
+
+## Citation
+Please cite the following reference if you utilize this repository for your project.
+```
+@inproceedings{tiadaod22cvpr,
+  author    = {Liang Zhao and
+               Limin Wang},
+  title     = {Task-specific Inconsistency Alignment for Domain Adaptive Object Detection},
+  booktitle = {{CVPR}},
+  year      = {2022}
+}
+```
+```
+@article{zhao2022task,
+  author    = {Zhao, Liang and 
+               Wang, Limin},
+  title     = {Task-specific Inconsistency Alignment for Domain Adaptive Object Detection},
+  journal   = {arXiv preprint arXiv:2203.15345},
+  year      = {2022}
+}
+```
