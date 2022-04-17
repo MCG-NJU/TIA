@@ -8,11 +8,26 @@ This repository is the official PyTorch implementation of paper Task-specific In
 torch == 1.0.0\
 torchvision == 0.2.0\
 Python 3\
-faster-rcnn
+[faster-rcnn](https://github.com/jwyang/faster-rcnn.pytorch/tree/pytorch-1.0) 
 
-<!-- ## Environmental settings
-This repository is developed using python 3.6.7 on Ubuntu 16.04.5 LTS. The CUDA nad CUDNN version is 9.0 and 7.4.1 respectively. We use one NVIDIA 1080ti GPU card for training and testing. Other platforms or GPU cards are not fully tested. -->
+## Datasets
+### Datasets Preparation
+* **Cityscape and FoggyCityscape:** Download the [Cityscape](https://www.cityscapes-dataset.com/) dataset, see dataset preparation code in [DA-Faster RCNN](https://github.com/yuhuayc/da-faster-rcnn/tree/master/prepare_data).
+* **PASCAL_VOC 07+12:** Please follow the [instruction](https://github.com/rbgirshick/py-faster-rcnn#beyond-the-demo-installation-for-training-and-testing-models) to prepare VOC dataset.
+* **Clipart:** Please follow the [instruction](https://github.com/naoto0804/cross-domain-detection/tree/master/datasets) to prepare Clipart dataset.
 
-## Pretrain models
-The pretrain backbone (vgg, resnet) and pretrain model (TIA) will be released soon.
+### Datasets Format
+All codes are written to fit for the **format of PASCAL_VOC**.  
+If you want to use this code on your own dataset, please arrange the dataset in the format of PASCAL, make dataset class in ```lib/datasets/```, and add it to ```lib/datasets/factory.py```, ```lib/datasets/config_dataset.py```. Then, add the dataset option to ```lib/model/utils/parser_func.py```.
 
+### Data Interpolation
+You should use [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) to generate the interpolation samples for both source and target domain, and then train the model with original and generated data.
+
+## Models
+### Pre-trained Models
+In our experiments, we used two pre-trained models on ImageNet, i.e., VGG16 and ResNet101. Please download these two models from:
+* **VGG16:** [Dropbox](https://www.dropbox.com/s/s3brpk0bdq60nyb/vgg16_caffe.pth?dl=0)  [VT Server](https://filebox.ece.vt.edu/~jw2yang/faster-rcnn/pretrained-base-models/vgg16_caffe.pth)
+
+* **ResNet101:** [Dropbox](https://www.dropbox.com/s/iev3tkbz5wyyuz9/resnet101_caffe.pth?dl=0)  [VT Server](https://filebox.ece.vt.edu/~jw2yang/faster-rcnn/pretrained-base-models/resnet101_caffe.pth)
+
+Download them and write the path in **__C.VGG_PATH** and **__C.RESNET_PATH** at ```lib/model/utils/config.py```.
