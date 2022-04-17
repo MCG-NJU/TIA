@@ -1,5 +1,5 @@
 # Task-specific Inconsistency Alignment for Domain Adaptive Object Detection (CVPR 2022)
----
+
 Liang Zhao, Limin Wang
 
 This repository is the official PyTorch implementation of paper Task-specific Inconsistency Alignment for Domain Adaptive Object Detection. (The work has been accepted by CVPR2022)
