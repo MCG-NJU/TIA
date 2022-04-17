@@ -5,7 +5,7 @@ Liang Zhao, Limin Wang*
 This repository is the official PyTorch implementation of paper Task-specific Inconsistency Alignment for Domain Adaptive Object Detection. (The work has been accepted by CVPR2022)
 
 ## Main requirements
-torch == 1.0.0\\
+torch == 1.0.0\
 torchvision == 0.2.0
 Python 3
 faster-rcnn
