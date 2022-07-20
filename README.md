@@ -28,6 +28,7 @@ python setup.py build develop
 cd data
 bash download_datasets.sh
 ```
+Still under construction, we will upload to google drive soon!
 
 You can also prepare all the datasets following [DA-Faster RCNN](https://github.com/yuhuayc/da-faster-rcnn), [SCL](https://github.com/harsh-99/SCL) and [HTCN](https://github.com/chaoqichen/HTCN).
 It is also important to note that we have written all the codes for **Pascal VOC** format.
@@ -100,9 +101,11 @@ If there are large discrepancies between different classifiers or localizers, th
 We have tried to manually constrain the initialization with some success, and if you are interested in this, you can also try more diverse initialization constraints.
 
 Q: Why are there some inconsistencies between the test results of the provided models and the results reported in the paper?
+
 A: After the paper was submitted, I attempted to impose some constraints against the initialized randomness in the adaptation from cityscape to foggy cityscape and obtained better results. Also, I tried to overcome the severe overfitting problem in the adaptation from kitti to cityscape and found more stable results with the help of earlystopping.
 
 Q: Why is the open source so late?
+
 A: I suffer from severe procrastination. If no one pushes me, I will keep procrastinating :), and if someone pushes me, I will keep procrastinating with pressure :(.
 
 ## :mag: Related repos
