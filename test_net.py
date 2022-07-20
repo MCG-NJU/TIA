@@ -43,42 +43,14 @@ weight_decay = cfg.TRAIN.WEIGHT_DECAY
 
 
 if __name__ == '__main__':
-	torch.set_num_threads(1)
-
+	# torch.set_num_threads(1)
 	args = parse_args_test()
 
 	print('Called with args:')
 	print(args)
 
-	# if args.dataset == "pascal_voc":
-	# 	args.imdb_name = "voc_2007_trainval"
-	# 	args.imdbval_name = "voc_2007_test"
-	# 	args.set_cfgs = [
-	# 		"ANCHOR_SCALES",
-	# 		"[4,8,16,32]",
-	# 		"ANCHOR_RATIOS",
-	# 		"[0.5,1,2]",
-	# 		"MAX_NUM_GT_BOXES",
-	# 		"50",
-	# 	]
-	# if args.dataset == "cityscape":
-	# 	args.s_imdb_name = "cityscape_2007_train_s"
-	# 	args.t_imdb_name = "cityscape_2007_train_t"
-	# 	args.s_imdbtest_name = "cityscape_2007_test_s"
-	# 	args.t_imdbtest_name = "cityscape_2007_test_t"
-	# 	args.set_cfgs = [
-	# 		"ANCHOR_SCALES",
-	# 		"[8,16,32]",
-	# 		"ANCHOR_RATIOS",
-	# 		"[0.5,1,2]",
-	# 		"MAX_NUM_GT_BOXES",
-	# 		"30",
-	# 	]
-	if args.dataset == "daf_cityscape":
-		args.s_imdb_name = "daf_cityscape_2007_train_s"
-		args.t_imdb_name = "daf_cityscape_2007_train_t"
-		args.s_imdbtest_name = "daf_cityscape_2007_test_s"
-		args.t_imdbtest_name = "daf_cityscape_2007_test"
+	if args.dataset == "cityscape":
+		args.t_imdbtest_name = "cityscape_2007_test"
 		args.set_cfgs = [
 			"ANCHOR_SCALES",
 			"[8,16,32]",
@@ -86,49 +58,6 @@ if __name__ == '__main__':
 			"[0.5,1,2]",
 			"MAX_NUM_GT_BOXES",
 			"30",
-		]
-	if args.dataset == "luna_cityscape":
-		args.s_imdb_name = "luna_cityscape_2007_train_s"
-		args.t_imdb_name = "luna_cityscape_2007_train_t"
-		args.s_imdbtest_name = "luna_cityscape_2007_test_s"
-		args.t_imdbtest_name = "luna_cityscape_2007_test"
-		args.set_cfgs = [
-			"ANCHOR_SCALES",
-			"[8,16,32]",
-			"ANCHOR_RATIOS",
-			"[0.5,1,2]",
-			"MAX_NUM_GT_BOXES",
-			"30",
-		]
-	elif args.dataset == "cityscape2rtts":
-		args.t_imdbtest_name = "rtts_2007_test"
-		args.set_cfgs = [
-			"ANCHOR_SCALES",
-			"[8,16,32]",
-			"ANCHOR_RATIOS",
-			"[0.5,1,2]",
-			"MAX_NUM_GT_BOXES",
-			"30",
-		]
-	if args.dataset == "sim2cityscape":
-		args.t_imdbtest_name = "cityscape_car_2007_test_s_new"
-		args.set_cfgs = [
-			"ANCHOR_SCALES",
-			"[8,16,32]",
-			"ANCHOR_RATIOS",
-			"[0.5,1,2]",
-			"MAX_NUM_GT_BOXES",
-			"30",
-		]
-	if args.dataset == "kitti2cityscape":
-		args.t_imdbtest_name = "cityscape_car_2007_test_s_new"
-		args.set_cfgs = [
-			"ANCHOR_SCALES",
-			"[8,16,32]",
-			"ANCHOR_RATIOS",
-			"[0.5,1,2]",
-			"MAX_NUM_GT_BOXES",
-			"20",
 		]
 	elif args.dataset == "clipart":
 		args.t_imdbtest_name = "clipart_trainval"
@@ -140,8 +69,8 @@ if __name__ == '__main__':
 			"MAX_NUM_GT_BOXES",
 			"20",
 		]
-	elif args.dataset == "water":
-		args.t_imdbtest_name = "watercolor_test"
+	if args.dataset == "kitti2cityscape":
+		args.t_imdbtest_name = "cityscape_car_2007_test_s"
 		args.set_cfgs = [
 			"ANCHOR_SCALES",
 			"[8,16,32]",
@@ -191,12 +120,6 @@ if __name__ == '__main__':
 							class_agnostic=args.class_agnostic,
 							context=args.context,
 							num_aux1=args.num_aux1, num_aux2=args.num_aux2)
-	elif args.net == 'res50':
-		fasterRCNN = resnet(imdb.classes, 50, pretrained=True,
-							class_agnostic=args.class_agnostic)
-	elif args.net == 'res152':
-		fasterRCNN = resnet(imdb.classes, 152, pretrained=True,
-							class_agnostic=args.class_agnostic)
 	else:
 		print('Undefined Network')
 

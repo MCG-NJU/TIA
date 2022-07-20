@@ -119,6 +119,18 @@ def parse_args():
         action='store_true'
     )
     parser.add_argument(
+        '--db', 
+        dest='db',
+        help='using dropblock',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--init', 
+        dest='init',
+        help='specifying initialization',
+        action='store_true'
+    )
+    parser.add_argument(
         '--preserve', 
         dest='preserve',
         help='preserving epochs',
@@ -316,10 +328,16 @@ def parse_args_test():
         action='store_false'
     )
     parser.add_argument(
+        '--db', 
+        dest='db',
+        help='using dropblock',
+        action='store_true'
+    )
+    parser.add_argument(
         '--num_aux1', 
         dest='num_aux1',
         help='num_aux1',
-        default=4, 
+        default=2, 
         type=int
     )
     parser.add_argument(

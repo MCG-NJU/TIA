@@ -317,7 +317,7 @@ def resnet152(pretrained=False):
 
 class resnet(_fasterRCNN):
     def __init__(self, classes, num_layers=101, pretrained=False, class_agnostic=False, context=True, num_aux1=2, num_aux2=2):
-        self.model_path = "../insda/pretrained_models/resnet101_caffe.pth"
+        self.model_path = "pretrained_models/resnet101_caffe.pth"
         self.dout_base_model = 1024
         self.pretrained = pretrained
         self.class_agnostic = class_agnostic
@@ -351,7 +351,7 @@ class resnet(_fasterRCNN):
         self.DA_img1 = _ImageLayer1()
         self.DA_img2 = _ImageLayer2()
         self.DA_img3 = _ImageLayer3()
-        self.DA_Inst = _InstanceLayer(self.dout_base_model)
+        self.DA_inst = _InstanceLayer(self.dout_base_model)
 
         feat_d = 2048
         if self.context:

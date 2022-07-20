@@ -19,10 +19,10 @@ from torch.autograd import Variable
 # from model.roi_pooling.modules.roi_pool import _RoIPooling
 # from model.roi_align.modules.roi_align import 
 
-def entropy(predictions: torch.Tensor) -> torch.Tensor:
-    epsilon = 1e-5
-    H = -predictions * torch.log(predictions + epsilon)
+def entropy(preds):
+    H = -preds * torch.log(preds + 1e-5)
     return H.sum(dim=2)
+
 
 class _fasterRCNN(nn.Module):
     """ faster RCNN """
@@ -104,7 +104,7 @@ class _fasterRCNN(nn.Module):
             
         inst_feat = None
         if self.training:
-            inst_feat = self.DA_Inst(ReverseLayerF.apply(pooled_feat, alpha1))
+            inst_feat = self.DA_inst(ReverseLayerF.apply(pooled_feat, alpha1))
 
         # feed pooled features to top model
         pooled_feat = self._head_to_tail(pooled_feat)
@@ -176,7 +176,6 @@ class _fasterRCNN(nn.Module):
             )
 
         cls_prob = F.softmax(cls_score, 1).view(batch_size, rois.size(1), -1)
-        # cls_prob = sum([F.softmax(cls_score, 1).view(batch_size, rois.size(1), -1)] + [F.softmax(cls_score_aux[:, :, i], 1).view(batch_size, rois.size(1), -1) for i in range(self.num_aux1)]) / (self.num_aux1 + 1)
         bbox_pred = bbox_pred.view(batch_size, rois.size(1), -1)
 
         return (
@@ -213,6 +212,11 @@ class _fasterRCNN(nn.Module):
         normal_init(self.RCNN_rpn.RPN_bbox_pred, 0, 0.01, cfg.TRAIN.TRUNCATED)
         normal_init(self.RCNN_cls_score, 0, 0.01, cfg.TRAIN.TRUNCATED)
         normal_init(self.RCNN_bbox_pred, 0, 0.001, cfg.TRAIN.TRUNCATED)
+
+        # alternative initialization (might be better)
+        # for i in range(self.num_aux1):
+        #     self.RCNN_cls_score_aux.weight[i * self.n_classes: (i+1) * self.n_classes, :].data.normal_(0, 0.01 * (i + 1))
+        #     self.RCNN_cls_score_aux.bias.data.zero_()
 
     def create_architecture(self):
         self._init_modules()
