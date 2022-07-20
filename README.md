@@ -90,6 +90,7 @@ bash scripts/clipart/train.sh
 
 ## :question: Q & A
 Q: Why are the training results unstable and inconsistent?
+
 A: It is firstly, I think, a intrinsic problem of DAOD. Since GRL-based adversarial training is essentially a compromise of GAN on large models like detectors. Therefore, DAOD and the primary GAN possess similar properties, both of their training are unstable, occasionally even mode collapse, and neither of their losses are indicative, making it difficult for us to determine their convergence.
 Second, the pixel-level adaptation, or namely the data augmentation, further reinforces this instability.
 As we simply wrap both the original and generated target-like images into the source domain, which could confuse the discriminator's judgment,
