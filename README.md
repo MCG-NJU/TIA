@@ -34,7 +34,7 @@ It is also important to note that we have written all the codes for **Pascal VOC
 Meanwhile, the pixel-level adaptation/interpolation/augmentation is implemented via [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) following [HTCN](https://github.com/chaoqichen/HTCN), for a fair comparison.
 We use the **default** parameters for training, and perhaps better parameters or networks would give better results. 
 
-## Pre-trained Models
+## :bell: Pre-trained Models
 
 Follow the convention, two pre-trained models on ImageNet, i.e., VGG16 and ResNet101 are employed. 
 Please download and place these two models in `pretrained_models/` from:
@@ -88,7 +88,7 @@ For example, to train TIA on the clipart dataset:
 bash scripts/clipart/train.sh
 ```
 
-## :fire: Q & A
+## :question: Q & A
 Q: Why are the training results unstable and inconsistent?
 A: It is firstly, I think, a intrinsic problem of DAOD. Since GRL-based adversarial training is essentially a compromise of GAN on large models like detectors. Therefore, DAOD and the primary GAN possess similar properties, both of their training are unstable, occasionally even mode collapse, and neither of their losses are indicative, making it difficult for us to determine their convergence.
 Second, the pixel-level adaptation, or namely the data augmentation, further reinforces this instability.
